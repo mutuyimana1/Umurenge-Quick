@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-Parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import scheduleRouter from "./src/Routes/scheduleRouter";
 
 
 dotenv.config("./.env")
@@ -10,6 +11,7 @@ dotenv.config("./.env")
 const app = express();
 
 app.use(bodyParser.json());
+app.use("/schedule",scheduleRouter);
 
 
  const dbUrl=process.env.DATABASEURL;
