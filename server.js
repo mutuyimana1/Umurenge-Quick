@@ -2,15 +2,17 @@ import express from "express";
 import bodyParser from "body-Parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import userRoute from "./src/Routes/userRoutes"
 
 
 dotenv.config("./.env")
-
-
 const app = express();
-
 app.use(bodyParser.json());
+app.use("/user",userRoute)
 
+app.use("/",(req,res)=>res.status(200).json({
+    message:"there is an error, check your system"
+}))
 
  const dbUrl=process.env.DATABASEURL;
  mongoose.connect(dbUrl).then(()=> console.log("Database connected successfully"));
