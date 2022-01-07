@@ -1,5 +1,6 @@
 import userInfos from "../models/user"
 import bcrypt from "bcrypt"
+import user from "../models/user"
 
 class userController{
     //creating a user(admin or user)
@@ -37,17 +38,25 @@ class userController{
             return res.status(404).json({ error: "user not deleted" })
         }
         return res.status(200).json({ message: "User deleted successfully", data: user });
-
     }
+    //updating a user
+    static async updateOneUser(req,res){
+        const user = await userInfos.findByIdAndUpdate(req.params.id,req.body, {new:true})
+        if(!user){
+            return res.status(404).json({error:"user not updated"})
+        }
+        return res.status(200).json({message: "user updated successfully"})
+    }
+    //login
+    static async login(req,res){
+        const User = await userInfos.findOne({email:req.body.email})
+        if (!user){
+            return res.status(404).json({error:"user not found! kindly first register"})
+        }
+        return res.status(200).json({ message: "User logged in successfully", data: user });
+        
+        }
 
-    // static async deleteOneUser(req, res) {
-    //     const user = await UserInfos.findByIdAndDelete(req.params.id);
-    //     if (!user) {
-    //         return res.status(404).json({ error: "user not deleted" })
-    //     }
-    //     return res.status(200).json({ message: "User deleted successfully", data: user });
-    // }
-   
+    
 }
-
 export default userController;
