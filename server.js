@@ -2,13 +2,20 @@ import express from "express";
 import bodyParser from "body-Parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+
+import scheduleRouter from "./src/Routes/scheduleRouter";
+
 import appoitmentRouter from "./src/Routes/appoitmentRouter";
 import userRoute from "./src/Routes/userRoutes"
+
 
 
 dotenv.config("./.env")
 const app = express();
 app.use(bodyParser.json());
+
+app.use("/schedule",scheduleRouter);
+
 app.use("/user",userRoute)
 
 app.use("/appoitment",appoitmentRouter);
@@ -16,6 +23,7 @@ app.use("/appoitment",appoitmentRouter);
 app.use("/", (req,res)=> res.status(200).json({
     message:"This APi does no exist"
 }));
+
 
 
  const dbUrl=process.env.DATABASEURL;
