@@ -5,8 +5,9 @@ const appoitmentRouter= express.Router();
 
 appoitmentRouter.post("/status",appoitmentController.createAppoitment);
 appoitmentRouter.get("/getAll",appoitmentController.getAllAppoitments);
-appoitmentRouter.get("/:id", appoitmentController.getOneAppoitment);
-appoitmentRouter.delete("/:id", appoitmentController.deleteOneAppoitment);
+appoitmentRouter.get("/getOne/:id", appoitmentController.getOneAppoitment);
+appoitmentRouter.delete("/deleteOne/:id", appoitmentController.deleteOneAppoitment);
+appoitmentRouter.patch("/update/:id",appoitmentController.updateAppoitment)
 
 
 export default appoitmentRouter;

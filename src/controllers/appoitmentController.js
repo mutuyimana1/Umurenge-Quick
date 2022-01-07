@@ -1,3 +1,4 @@
+import appoitment from "../models/appoitments";
 import appoitmentInfos from "../models/appoitments";
 
 class appoitmentController{
@@ -44,6 +45,15 @@ class appoitmentController{
             return res.status(404).json({error:"appoitment not deleted"});
         }
         return res.status(200).json({message:"appoitment deleted", data: appoitment});
+}
+
+//update a schedule
+static async updateAppoitment(req,res){
+    const appoitment= await appoitmentInfos.findByIdAndUpdate(req.params.id,req.body,{new:true});
+    if(!appoitment){
+        return res.status(404).json({error:"appoitment not updated"});
+    }
+    return res.status(200).json({message:"appoitment updated", data:appoitment});
 }
 }
 
