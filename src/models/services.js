@@ -7,7 +7,7 @@ serviceName:{
     type:String,
     required:true,
 },
-tourDescription:{
+servicesDescription:{
     type:String, 
     required:true,
 }

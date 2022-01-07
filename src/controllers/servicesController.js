@@ -48,5 +48,13 @@ if(!services){
 return res.status(200).json({message:"service retrives successfully",data: services})
 
 }
+static async updateOneService(req,res) {
+const services =await servicesInfos.findByIdAndUpdate(req.params.id,req.body,{new:true});
+if (!services){
+    return res.status(404).json({error:"service not updated"});
+
+}
+return res.status(200).json({message:"service updated successfully",data:services})
+}
 }
 export default ServicesController;
