@@ -7,7 +7,9 @@
    
     
     "start": "babel-node ./server.js",
-    "dev-start": " babel-node ./server.js",
+
+    "dev-start": "babel-node ./server.js",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,13 +18,16 @@
   "author": "CAFE",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.1.2",
+
+    "@babel/cli": "^7.16.7",
+
     "@babel/core": "^7.16.7",
     "@babel/node": "^7.16.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.12.10",
     "@types/node": "^14.14.22",
+    "babel-node": "^0.0.1-security",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "dev-start": "^0.1.3",
