@@ -6,9 +6,9 @@ const scheduleRouter = express.Router();
 scheduleRouter.post(
     "/create", ScheduleController.createSchedule)
     scheduleRouter.get("/all", ScheduleController.getAllSchedule)
-    scheduleRouter.get("/:id", ScheduleController.getOneSchedule)
-    scheduleRouter.delete("/:id", ScheduleController.deleteSchedule)
-    scheduleRouter.patch("/:id", ScheduleController.updateSchedule)
+    scheduleRouter.get("/getone/:id", ScheduleController.getOneSchedule)
+    scheduleRouter.delete("/delete/:id", ScheduleController.deleteSchedule)
+    scheduleRouter.patch("/update/:id", ScheduleController.updateSchedule)
 
 
     export default scheduleRouter;

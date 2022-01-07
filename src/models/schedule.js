@@ -17,7 +17,7 @@ const scheduleSchema= new mongoose.Schema(
     serviceId:String,
     seats:Number,
     startDate:Date,
-    endDate:Date
+    endDate:Date,
     // startTime:DateTime,
     // endTime:DateTime
 },

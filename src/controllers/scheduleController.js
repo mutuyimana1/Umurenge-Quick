@@ -33,15 +33,15 @@ class ScheduleController{
         }
         return res.status(400).json({message:"schedule deleted successfully"});
     };
-    static async updateSchedule(res,req){
-        const schedule= await ScheduleInfos.findByIdAndUpdate(req.params.id, req.body);
+    static async updateSchedule(req,res){
+        const schedule= await ScheduleInfos.findByIdAndUpdate(req.params.id, req.body,{new: true});
         if(!schedule){
             return res.status(400).json({error:"schedule not updated"});
 
         }
 
-        const updatedschedule= await ScheduleInfos.findById(req.params.id);
-        return res.status(200).json({message:"schedule updated successfully",data:updatedschedule});
+        // const updatedschedule= await ScheduleInfos.findById(req.params.id);
+        return res.status(200).json({message:"schedule updated successfully",data:schedule});
     }
    } 
 
