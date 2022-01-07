@@ -4,15 +4,29 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import servicesRoutes from "./src/Routes/servicesRoutes";
 
+import scheduleRouter from "./src/Routes/scheduleRouter";
+
+import appoitmentRouter from "./src/Routes/appoitmentRouter";
+import userRoute from "./src/Routes/userRoutes"
+
+
 
 dotenv.config("./.env")
-
-
 const app = express();
-
 app.use(bodyParser.json());
 app.use("/services",servicesRoutes);
 app.use("/",(req,res)=> res.status(200).json({
+
+app.use("/schedule",scheduleRouter);
+
+app.use("/user",userRoute)
+
+app.use("/appoitment",appoitmentRouter);
+
+app.use("/", (req,res)=> res.status(200).json({
+    message:"This APi does no exist"
+}));
+
 
 
 
