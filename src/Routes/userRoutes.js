@@ -1,9 +1,11 @@
 import express from "express";
 import userController from "../controllers/userController";
+import validator from "validator";
 
 const userRoute= express.Router();
     
-userRoute.post("/register", userController.createUser)
+userRoute.post("/register",
+validator.newAccountRules(), userController.createUser)
 userRoute.get("/all", userController.getAllUsers)
 userRoute.get("/:id", userController.getOneUser)
 userRoute.delete("/:id",userController.deleteOneUser)
