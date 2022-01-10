@@ -1,5 +1,6 @@
 import Schedule from "../models/schedule";
 import ScheduleInfos from "../models/schedule";
+import TokenAuth from "../helpers/tokeAuth";
 
 class ScheduleController{
    static async createSchedule(req,res){
