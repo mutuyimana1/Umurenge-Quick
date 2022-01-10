@@ -8,7 +8,7 @@
     
     "start": "babel-node ./server.js",
 
-    "dev-start": "babel-node ./server.js",
+    "dev-start": "nodemon --exec babel-node ./server.js",
 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
