@@ -15,24 +15,22 @@ dotenv.config("./.env")
 const app = express();
 app.use(bodyParser.json());
 app.use("/services",servicesRoutes);
-app.use("/",(req,res)=> res.status(200).json({
-
 app.use("/schedule",scheduleRouter);
 
-app.use("/user",userRoute)
+app.use("/user",userRoute);
 
 app.use("/appoitment",appoitmentRouter);
+app.use("/",(req,res)=> res.status(200).json({
 
-app.use("/", (req,res)=> res.status(200).json({
+
+
+// app.use("/", (req,res)=> res.status(200).json({
     message:"This APi does no exist"
 }));
 
 
 
 
-
-    message:"This is Service Api is not exist"
-    }));
    
 
  const dbUrl=process.env.DATABASEURL;
