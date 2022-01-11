@@ -16,18 +16,18 @@ const app = express();
 app.use(bodyParser.json());
 app.use("/services",servicesRoutes);
 
-
 app.use("/schedule",scheduleRouter);
 
 app.use("/user",userRoute);
 
 app.use("/appoitment",appoitmentRouter);
+app.use("/",(req,res)=> res.status(200).json({
 
 app.use("/", (req,res)=> res.status(200).json({
 
+// app.use("/", (req,res)=> res.status(200).json({
     message:"This APi does no exist"
 }));
-
 
  const dbUrl=process.env.DATABASEURL;
  mongoose.connect(dbUrl).then(()=> console.log("Database connected successfully"));
