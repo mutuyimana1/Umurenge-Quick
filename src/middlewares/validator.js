@@ -7,7 +7,7 @@ class validator{
             return res.status(400).json({message:errorMessage})
         }
         return next();
-    };
+    }
     static newAccountRules(){
         return[
             check("email","email is invalid").trim().isEmail(), //trim function removes the space before/after the email
@@ -21,6 +21,5 @@ class validator{
             .trim().isIn(["male","female","other","prefer not to say"]),
         ];
     }
-
 }
 export default validator;
