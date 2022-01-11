@@ -9,7 +9,7 @@ userRoute.get("/:id", userController.getOneUser)
 userRoute.delete("/:id",userController.deleteOneUser)
 userRoute.post("/login",
 verifyAccess("admin"),
-verifyAccess("leader"),
+
 userController.login)
 userRoute.patch("/:id", userController.updateOneUser)
     
