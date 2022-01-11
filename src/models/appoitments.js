@@ -21,16 +21,16 @@ const appoitmentSchema= new mongoose.Schema({
     timestamp:true,
 });
 
-// appoitmentSchema.pre(/^find/ , function (next) {
-//     this.populate({
-//         path:"user",
-//         select:"firstName lastName idNumber phoneNumber gender adrress"
-//     })
-//     .populate({
-//         path:"schedule",
-//     })
-//     next();
-// });
+  appoitmentSchema.pre(/^find/ , function (next) {
+    this.populate({
+        path:"user",
+         select:"firstName lastName idNumber phoneNumber gender adrress"
+     })
+     .populate({
+       path:"schedule",
+     })
+    next();
+});
 
 const appoitment= mongoose.model("appoitment", appoitmentSchema);
 
