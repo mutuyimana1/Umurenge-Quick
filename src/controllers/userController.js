@@ -1,7 +1,7 @@
 import userInfos from "../models/user"
 import bcrypt from "bcrypt"
 import user from "../models/user"
-
+import TokenAuth from "../helpers/tokenAuth"
 class userController{
     //creating a user(admin or user)
     static async createUser(req,res){
@@ -48,14 +48,28 @@ class userController{
         return res.status(200).json({message: "user updated successfully"})
     }
     //login
-    static async login(req,res){
-        const User = await userInfos.findOne({email:req.body.email})
-        if (!user){
-            return res.status(404).json({error:"user not found! kindly first register"})
+    static async login(req, res) {
+        const user = await userInfos.findOne({ email: req.body.email });
+        if (!user) {
+          return res
+            .status(404)
+            .json({ error: "user not found! kindly first register" });
         }
-        return res.status(200).json({ message: "User logged in successfully", data: user });
-        
+        if (bcrypt.compareSync(req.body.password, user.password)) {
+          user.password = null;
+          const token = TokenAuth.tokenGenerator({ user: user });
+    
+          return res
+            .status(200)
+            .json({
+              message: "User logged in successfully",
+              token: token,
+              data: user,
+            });
         }
+        return res.status(400).json({ error: "invalid password" });
+      }
+    
 
     
 }
