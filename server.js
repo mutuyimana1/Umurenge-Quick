@@ -15,6 +15,7 @@ dotenv.config("./.env")
 const app = express();
 app.use(bodyParser.json());
 app.use("/services",servicesRoutes);
+
 app.use("/schedule",scheduleRouter);
 
 app.use("/user",userRoute);
