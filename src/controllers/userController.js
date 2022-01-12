@@ -1,7 +1,9 @@
+
 import userInfos from "../models/user";
 import bcrypt from "bcrypt";
 import user from "../models/user";
 import TokenAuth from "../helpers/tokeAuth";
+
 
 class userController {
   //creating a user(admin or user)
@@ -67,8 +69,7 @@ class userController {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       user.password = null;
       const token = TokenAuth.tokenGenerator({ user: user });
-
-      return res
+       return res
         .status(200)
         .json({
           message: "User logged in successfully",

@@ -16,31 +16,21 @@ const app = express();
 app.use(bodyParser.json());
 app.use("/services",servicesRoutes);
 
-
 app.use("/schedule",scheduleRouter);
 
-app.use("/user",userRoute)
+app.use("/user",userRoute);
 
 app.use("/appoitment",appoitmentRouter);
-
-app.use("/", (req,res)=> res.status(200).json({
+app.use("/",(req,res)=> res.status(200).json({
     message:"This APi does no exist"
 }));
-
-
-
-
-
-// app.use("/",(req,res)=> res.status(200).json({message:"This is Service Api is not exist"
-//     }));
-   
 
  const dbUrl=process.env.DATABASEURL;
  mongoose.connect(dbUrl).then(()=> console.log("Database connected successfully"));
 
 const port=process.env.PORT;
 app.listen(port,()=>{
-    console.log(`server is running on port 3030`);
+    console.log(`server is running on port 4040`);
 })
 
 export default app;
