@@ -3,18 +3,18 @@ import mongoose from "mongoose";
 
 const scheduleSchema= new mongoose.Schema(
     {
-    // user:{
-    //     type: mongoose.Schema.ObjectId,
+    user:{
+        type: mongoose.Schema.ObjectId,
 
-    //     ref:"User",
-    // },
-    // service:{
-    //     type: mongoose.Schema.ObjectId,
+        ref:"User",
+    },
+    service:{
+        type: mongoose.Schema.ObjectId,
 
-    //     ref:"Services"
-    // },
-    userId:String,
-    serviceId:String,
+        ref:"Services"
+    },
+    // userId:String,
+    // serviceId:String,
     seats:Number,
     startDate:Date,
     endDate:Date,
@@ -29,25 +29,25 @@ const scheduleSchema= new mongoose.Schema(
 
 
 );
-// scheduleSchema.pre(/^find/,function (next){
+scheduleSchema.pre(/^find/,function (next){
 
-//     this.populate({
+    this.populate({
 
-//       path:"user",
+      path:"user",
 
-//       select:"firstName lastName phone email "
+      select:"firstName lastName phone email "
 
-//     }).populate({
+    }).populate({
 
-//         path:"service",
+        path:"service",
 
-//     });
+    });
 
    
 
-//     next();
+    next();
 
-//   });
+  });
 
 const Schedule = mongoose.model("Schedule", scheduleSchema);
 
