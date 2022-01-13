@@ -1,36 +1,27 @@
 import Schedule from "../models/schedule";
 import ScheduleInfos from "../models/schedule";
-
-
-class ScheduleController{
-   static async createSchedule(req,res){
-    
-    if(!Schedule){
+import TokenAuth from "../helpers/tokeAuth";
 import UserInfos from "../models/user";
-class ScheduleController{
-   static async createSchedule(req,res){
-    const scheduleData = {
-        user: req.user._id,
-  
-        service: req.params.id,
-        
-      };
-  
-    //   const schedule = await ScheduleInfos.create(scheduleData);
-  
-      const user = await UserInfos.findById(req.params.id);
 
-    const schedule = await ScheduleInfos.create(req.body,scheduleData);
-    // const availableschedule=schedule.seats-1;
-    // await ScheduleInfos.findByIdAndUpdate(req.params.id,{seats=availableschedule});
+class ScheduleController {
+    //creating schedule
+  static async createSchedule(req, res) {
 
-    if(!schedule){
-        return res.status(400).json({ error: "schedule not registered" });
+    // console.log(req.user)
+    req.body.user =req.user._id;
+    req.body.service =req.params.id;
+
+    // const user = await UserInfos.findById(req.user._id);
+
+    const schedule = await ScheduleInfos.create(req.body);
+
+    if (!schedule) {
+      return res.status(400).json({ error: "schedule not registered" });
     }
     return res
       .status(200)
-      .json({ message: "schedule registered successfully" , data: Schedule});
-    };
+      .json({ message: "schedule registered successfully", data: schedule });
+  }
 
 
     static async getAllSchedule(req,res){
@@ -64,6 +55,6 @@ class ScheduleController{
         // const updatedschedule= await ScheduleInfos.findById(req.params.id);
         return res.status(200).json({message:"schedule updated successfully",data:schedule});
     }
-   } 
+  
 
-   export default ScheduleController;
+export default ScheduleController;

@@ -23,6 +23,7 @@ from:"+14179245030",
 to:userPhone
 })
 .then((message)=> console.log(message.sid));
+
 };
 
 export default sendSms;

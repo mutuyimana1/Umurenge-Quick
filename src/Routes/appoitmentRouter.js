@@ -9,7 +9,11 @@ appoitmentRouter.post("/create/:id", verifyToken, verifyAcess("user"), appoitmen
 appoitmentRouter.get("/getAll", appoitmentController.getAllAppoitments);
 appoitmentRouter.get("/getOne/:id", appoitmentController.getOneAppoitment);
 appoitmentRouter.delete("/deleteOne/:id", appoitmentController.deleteOneAppoitment);
+
+appoitmentRouter.patch("update/status",appoitmentController.changeAppointmentStatus)
+
 appoitmentRouter.patch("/update/:id", verifyToken, verifyAcess("leader"), appoitmentController.updateAppoitment);
+
 
 
 export default appoitmentRouter;

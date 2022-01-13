@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const appoitmentSchema= new mongoose.Schema({
+
     
      user:{
          type:mongoose.Schema.ObjectId,
@@ -14,7 +15,6 @@ const appoitmentSchema= new mongoose.Schema({
           type:mongoose.Schema.ObjectId,
           ref:"sevices"
         },
-   
     status:{
         type:String,
         enum:["pending","accepted","declined","canceled"],
