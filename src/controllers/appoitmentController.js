@@ -1,26 +1,10 @@
-import appoitment from "../models/appoitments";
 import appoitmentInfos from "../models/appoitments";
+import ScheduleInfos from "../models/schedule";
+import user from "../models/user";
+import sendSms from "../helpers/sendSMS";
 
 class appoitmentController {
-  //create an appoitment
-
-  static async createAppoitment(req, res) {
-    console.log(req.body);
-    const appoitment = await appoitmentInfos.create(req.body);
-    console.groupCollapsed(appoitment);
-
-    if (!appoitment) {
-      return res
-        .status(404)
-        .json({ error: "appoitment not created! run out of seats!!" });
-    }
-    return res
-      .status(200)
-      .json({
-        message: "Your appoitment created successfully!",
-        data: appoitment,
-      });
-  }
+  
 
   //get all appoitments
 
@@ -41,6 +25,7 @@ class appoitmentController {
 
   static async getOneAppoitment(req, res) {
     const appoitment = await appoitmentInfos.findById(req.params.id);
+
 
     if (!appoitment) {
       return res.status(404).json({ error: "appoitment not found" });
@@ -88,11 +73,50 @@ class appoitmentController {
     if (!appointment) {
       return res.status(404).json({ error: "failed to upadate status" });
     }
-    // sendSms(book.user.lastName, book.tour.names, book.status, book.id, book.user.phone);
-    return res
-      .status(200)
-      .json({ message: "success appointment updated", data: appointment });
-  }
+
+    return res.status(200).json({message:"appoitment updated", data:appoitment});
+}
+
+//create appoitment and send sms
+
+
+static async createAppoitment(req,res){
+    const{id,status}=req.body;
+    console.log("gggg",req.params.id)
+    const appoitment=await appoitmentInfos.findByIdAndUpdate(id,{status:status},{new:true})
+    if(!appoitment) {
+        return res.status(404).json({error:"failed to update status"});
+
+    }
+    console.log(appoitment);
+    sendSms(appoitment.user.firstName,appoitment.user.lastName,appoitment.services.serviceName,appoitment.status,appoitment._id,appoitment.user.phone)
+    return res.status(200).json({message:"success",data:appoitment})
+}
+ //create an appoitment
+
+      
+ static async createAppoitment(req,res){
+    const appoitmentData={
+        user:req.user._id,
+        appoitment:req.params.id
+    };
+    
+    // console.log(req.body)
+    const appoitment= await appoitmentInfos.create(req.body);
+    // console.groupCollapsed(appoitment);
+
+    if(!appoitment){
+        return res.status(404).json({error:"appoitment not created! run out of seats!!"})
+    }
+    
+    const Schedule= await ScheduleInfos.findById(req.body.id);
+    console.log(Schedule)
+    const scheduleSeats= Schedule.seats-1;
+    await ScheduleInfos.findByIdAndUpdate(req.params.id,{seats:scheduleSeats},{new:true});
+
+    return res.status(200).json({message: "Your appoitment created successfully!" ,data:Schedule});
+}
+
 }
 
 export default appoitmentController;

@@ -1,33 +1,29 @@
 import dotenv from "dotenv";
 
 dotenv.config();
-
-const client = require("twilio")(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_ID
+const client=require("twilio")(
+    process.env.TWILIO_ACCOUNT_ID,
+    process.env.TWILIO_AUTH_ID
 );
-//Hey anne, your canopy booking accepted The application Id:233435
 
-const sendSms = (
-  userName,
-  serviceName,
-  applicationStatus,
-  applicationId,
-  userphone
-) => {
-  client.messages.create({
-    body:
-      "hey " +
-      userName +
-      ", your " +
-      serviceName +
-      " booking tour " +
-      applicationStatus +
-      " the application Id: " +
-      applicationId,
-      from:"+15713646880",
-      to:userphone
-  }).then((message)=>console.log(message.sid));
+const sendSms=(firstName, lastName,serviceName, applicationStatus, applicationId, userPhone)=>{
+
+client.message.create({body:
+
+"Hey "+
+firstName  +
+lastName +
+"your appoitment with a leader on" +
+serviceName +
+"have been " +
+applicationStatus +
+"refId" +
+applicationId,
+from:"+14179245030",
+to:userPhone
+})
+.then((message)=> console.log(message.sid));
+
 };
 
 export default sendSms;

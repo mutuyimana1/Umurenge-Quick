@@ -1,14 +1,20 @@
 import mongoose from "mongoose";
 
 const appoitmentSchema= new mongoose.Schema({
-    user:{
+
+    
+     user:{
+         type:mongoose.Schema.ObjectId,
+       ref:"user"
+     },
+     schedule:{
         type:mongoose.Schema.ObjectId,
-        ref:"User"
-    },
-    schedule:{
-        type:mongoose.Schema.ObjectId,
-        ref:"Schedule"
-    },
+        ref:"schedule"
+      },
+        services:{
+          type:mongoose.Schema.ObjectId,
+          ref:"sevices"
+        },
     status:{
         type:String,
         enum:["pending","accepted","declined","canceled"],
@@ -26,6 +32,9 @@ const appoitmentSchema= new mongoose.Schema({
      })
      .populate({
        path:"schedule",
+     })
+     .populate({
+       path:"services",
      })
     next();
 });
