@@ -4,10 +4,9 @@ import verifyToken from "../middlewares/verifyToken";
 const scheduleRouter = express.Router();
 
 scheduleRouter.post("/create", verifyToken, ScheduleController.createSchedule);
-scheduleRouter.get("/all", verifyToken, ScheduleController.getAllSchedule);
+scheduleRouter.get("/all",ScheduleController.getAllSchedule);
 scheduleRouter.get(
   "/getone/:id",
-  verifyToken,
   ScheduleController.getOneSchedule
 );
 scheduleRouter.delete(

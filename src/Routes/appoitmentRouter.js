@@ -1,13 +1,15 @@
-import express  from "express";
+import express from "express";
 import appoitmentController from "../controllers/appoitmentController";
+import verifyToken from "../middlewares/verifyToken";
+import verifyAcess from "../middlewares/verifyAccess";
 
-const appoitmentRouter= express.Router();
+const appoitmentRouter = express.Router();
 
-appoitmentRouter.post("/status",appoitmentController.createAppoitment);
-appoitmentRouter.get("/getAll",appoitmentController.getAllAppoitments);
+appoitmentRouter.post("/create/:id", verifyToken, verifyAcess("user"), appoitmentController.createAppoitment);
+appoitmentRouter.get("/getAll", appoitmentController.getAllAppoitments);
 appoitmentRouter.get("/getOne/:id", appoitmentController.getOneAppoitment);
 appoitmentRouter.delete("/deleteOne/:id", appoitmentController.deleteOneAppoitment);
-appoitmentRouter.patch("/update/:id",appoitmentController.updateAppoitment)
+appoitmentRouter.patch("/update/:id", verifyToken, verifyAcess("leader"), appoitmentController.updateAppoitment);
 
 
 export default appoitmentRouter;

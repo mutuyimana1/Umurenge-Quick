@@ -22,10 +22,6 @@ app.use("/user",userRoute);
 
 app.use("/appoitment",appoitmentRouter);
 app.use("/",(req,res)=> res.status(200).json({
-
-app.use("/", (req,res)=> res.status(200).json({
-
-// app.use("/", (req,res)=> res.status(200).json({
     message:"This APi does no exist"
 }));
 
