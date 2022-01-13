@@ -6,6 +6,25 @@ class ScheduleController{
    static async createSchedule(req,res){
     
     if(!Schedule){
+import UserInfos from "../models/user";
+class ScheduleController{
+   static async createSchedule(req,res){
+    const scheduleData = {
+        user: req.user._id,
+  
+        service: req.params.id,
+        
+      };
+  
+    //   const schedule = await ScheduleInfos.create(scheduleData);
+  
+      const user = await UserInfos.findById(req.params.id);
+
+    const schedule = await ScheduleInfos.create(req.body,scheduleData);
+    // const availableschedule=schedule.seats-1;
+    // await ScheduleInfos.findByIdAndUpdate(req.params.id,{seats=availableschedule});
+
+    if(!schedule){
         return res.status(400).json({ error: "schedule not registered" });
     }
     return res

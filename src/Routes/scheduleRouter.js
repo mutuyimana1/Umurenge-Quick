@@ -2,9 +2,11 @@ import express from "express";
 import ScheduleController from "../controllers/scheduleController";
 import verifyToken from "../middlewares/verifyToken";
 const scheduleRouter = express.Router();
-
 scheduleRouter.post("/create", verifyToken, ScheduleController.createSchedule);
-scheduleRouter.get("/all",ScheduleController.getAllSchedule);
+scheduleRouter.post("/create/:id", verifyToken, 
+
+ScheduleController.createSchedule);
+scheduleRouter.get("/all", verifyToken, ScheduleController.getAllSchedule);
 scheduleRouter.get(
   "/getone/:id",
   ScheduleController.getOneSchedule
