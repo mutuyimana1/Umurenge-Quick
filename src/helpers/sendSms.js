@@ -1,20 +1,20 @@
 import dotenv from "dotenv";
 
 dotenv.config();
-const client=required("twilio")(
+const client=require("twilio")(
     process.env.TWILIO_ACCOUNT_ID,
     process.env.TWILIO_AUTH_ID
-),
+);
 
-const sendSms=(firstName, lastName,serviseId, applicationStatus, applicationId, userPhone)=>{
+const sendSms=(firstName, lastName,serviceName, applicationStatus, applicationId, userPhone)=>{
 
 client.message.create({body:
 
 "Hey "+
 firstName  +
 lastName +
-"your appoitment with " +
-serviceId +
+"your appoitment with a leader on" +
+serviceName +
 "have been " +
 applicationStatus +
 "refId" +

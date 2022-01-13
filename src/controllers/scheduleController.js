@@ -1,5 +1,11 @@
 import Schedule from "../models/schedule";
 import ScheduleInfos from "../models/schedule";
+
+
+class ScheduleController{
+   static async createSchedule(req,res){
+    
+    if(!Schedule){
 import UserInfos from "../models/user";
 class ScheduleController{
    static async createSchedule(req,res){
@@ -23,8 +29,10 @@ class ScheduleController{
     }
     return res
       .status(200)
-      .json({ message: "schedule registered successfully", data: schedule });
+      .json({ message: "schedule registered successfully" , data: Schedule});
     };
+
+
     static async getAllSchedule(req,res){
         const schedules = await ScheduleInfos.find(req.body);
         if(!schedules){

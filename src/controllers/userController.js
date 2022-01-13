@@ -1,7 +1,7 @@
-import userInfos from "../models/user"
-import bcrypt from "bcrypt"
-import user from "../models/user"
-import TokenAuth from "../helpers/tokenAuth"
+import userInfos from "../models/user";
+import bcrypt from "bcrypt";
+import TokenAuth from "../helpers/tokenAuth";
+
 class userController{
     //creating a user(admin or user)
     static async createUser(req,res){
@@ -57,14 +57,14 @@ class userController{
         }
         if (bcrypt.compareSync(req.body.password, user.password)) {
           user.password = null;
-          const token = TokenAuth.tokenGenerator({ user: user });
+          const token = TokenAuth.tokenGenerator({user:user});
     
           return res
             .status(200)
             .json({
               message: "User logged in successfully",
-              token: token,
-              data: user,
+              token:token,
+              data:user
             });
         }
         return res.status(400).json({ error: "invalid password" });
