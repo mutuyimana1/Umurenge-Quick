@@ -13,13 +13,9 @@ const scheduleSchema= new mongoose.Schema(
 
         ref:"Services"
     },
-    // userId:String,
-    // serviceId:String,
     seats:Number,
     startDate:Date,
     endDate:Date,
-    // startTime:DateTime,
-    // endTime:DateTime
 },
     {
         timestamps:true,

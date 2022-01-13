@@ -1,16 +1,14 @@
 import mongoose from "mongoose";
 
 const appoitmentSchema= new mongoose.Schema({
-    scheduleId:String,
-    userId:String,
-    // user:{
-    //     type:mongoose.Schema.ObjectId,
-    //     ref:"User"
-    // },
-    // schedule:{
-    //     type:mongoose.Schema.ObjectId,
-    //     ref:"Schedule"
-    // },
+    user:{
+        type:mongoose.Schema.ObjectId,
+        ref:"User"
+    },
+    schedule:{
+        type:mongoose.Schema.ObjectId,
+        ref:"Schedule"
+    },
     status:{
         type:String,
         enum:["pending","accepted","declined","canceled"],

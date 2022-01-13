@@ -6,16 +6,16 @@ import TokenAuth from "../helpers/tokeAuth";
 import UserInfos from "../models/user";
 
 class ScheduleController {
+    //creating schedule
   static async createSchedule(req, res) {
-    const scheduleData = {
-      user: req.user._id,
 
-      service: req.params.id,
-    };
+    // console.log(req.user)
+    req.body.user =req.user._id;
+    req.body.service =req.params.id;
 
-    const user = await UserInfos.findById(req.params.id);
+    // const user = await UserInfos.findById(req.user._id);
 
-    const schedule = await ScheduleInfos.create(req.body, scheduleData);
+    const schedule = await ScheduleInfos.create(req.body);
 
     if (!schedule) {
       return res.status(400).json({ error: "schedule not registered" });
@@ -24,6 +24,7 @@ class ScheduleController {
       .status(200)
       .json({ message: "schedule registered successfully", data: schedule });
   }
+  //get all schedule
   static async getAllSchedule(req, res) {
     const schedules = await ScheduleInfos.find(req.body);
     if (!schedules) {
@@ -33,6 +34,7 @@ class ScheduleController {
       .status(200)
       .json({ message: "schedules are found", data: schedules });
   }
+  //get one schedule
   static async getOneSchedule(req, res) {
     const schedule = await ScheduleInfos.findById(req.params.id);
     if (!Schedule) {
@@ -42,6 +44,7 @@ class ScheduleController {
       .status(200)
       .json({ message: "schedule is found", data: schedule });
   }
+  //delete schedule
   static async deleteSchedule(req, res) {
     const schedule = await ScheduleInfos.findByIdAndDelete(req.params.id);
     if (!Schedule) {
@@ -49,6 +52,7 @@ class ScheduleController {
     }
     return res.status(400).json({ message: "schedule deleted successfully" });
   }
+  //upfate schedule
   static async updateSchedule(req, res) {
     const schedule = await ScheduleInfos.findByIdAndUpdate(
       req.params.id,

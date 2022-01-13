@@ -18,6 +18,7 @@ const isUserExist= async(req,res,next) =>{
     if(name==="TokenWebExpired"){
         return res.status(400).json({error:"JWT token expired "});
     }
+    // console.log(data);
    req.user =data.user;
    const user = UserInfos.findById(req.user._id);
    

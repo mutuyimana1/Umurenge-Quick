@@ -30,7 +30,7 @@ app.use("/",(req,res)=> res.status(200).json({
 
 const port=process.env.PORT;
 app.listen(port,()=>{
-    console.log(`server is running on port 4040`);
+    console.log(`server is running on port 3030`);
 })
 
 export default app;
