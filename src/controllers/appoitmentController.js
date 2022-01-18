@@ -1,7 +1,7 @@
 import appoitmentInfos from "../models/appoitments";
 import ScheduleInfos from "../models/schedule";
 import user from "../models/user";
-import sendSms from "../helpers/sendSMS";
+import sendSms from "../helpers/sendSms";
 import appoitment from "../models/appoitments";
 
 class appoitmentController {
