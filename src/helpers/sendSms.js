@@ -8,18 +8,18 @@ const client=require("twilio")(
 
 const sendSms=(firstName, lastName,serviceName, applicationStatus, applicationId, userPhone)=>{
 
-client.message.create({body:
+client.messages.create({body:
 
 "Hey "+
 firstName  +
 lastName +
-"your appoitment with a leader on" +
+" your appoitment with of " +
 serviceName +
-"have been " +
+" have been " +
 applicationStatus +
-"refId" +
+" refId " +
 applicationId,
-from:"+14179245030",
+from:"+15713646880",
 to:userPhone
 })
 .then((message)=> console.log(message.sid));
