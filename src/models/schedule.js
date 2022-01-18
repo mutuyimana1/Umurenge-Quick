@@ -14,6 +14,8 @@ const scheduleSchema= new mongoose.Schema(
         ref:"Services"
     },
     seats:Number,
+    availableSeats:Number,
+    scheduleSeats:Number,
     startDate:Date,
     endDate:Date,
 },
@@ -45,6 +47,6 @@ scheduleSchema.pre(/^find/,function (next){
 
   });
 
-const Schedule = mongoose.model("Schedule", scheduleSchema);
+const schedule = mongoose.model("Schedule", scheduleSchema);
 
-export default Schedule;
+export default schedule;

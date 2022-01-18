@@ -1,24 +1,23 @@
 import mongoose from "mongoose";
-
 const appoitmentSchema= new mongoose.Schema({
 
     
      user:{
          type:mongoose.Schema.ObjectId,
-       ref:"user"
+       ref:"User"
      },
      schedule:{
         type:mongoose.Schema.ObjectId,
-        ref:"schedule"
+        ref:"Schedule"
       },
         services:{
           type:mongoose.Schema.ObjectId,
-          ref:"sevices"
+          ref:"Services"
         },
     status:{
         type:String,
         enum:["pending","accepted","declined","canceled"],
-        default:"pending"
+        default:"accepted"
     },
 
 },{
@@ -28,7 +27,7 @@ const appoitmentSchema= new mongoose.Schema({
   appoitmentSchema.pre(/^find/ , function (next) {
     this.populate({
         path:"user",
-         select:"firstName lastName idNumber phoneNumber gender adrress"
+         select:"firstName lastName address Identification_card phone_number gender "
      })
      .populate({
        path:"schedule",
