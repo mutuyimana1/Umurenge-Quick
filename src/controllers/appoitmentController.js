@@ -10,6 +10,20 @@ class appoitmentController {
   static async createAppoitment(req,res){
     req.body.user =req.user._id;
     req.body.schedule =req.params.id;
+
+    const schedule= await ScheduleInfos.findById(req.params.id);
+
+    if(!schedule){
+      return res.status(404).json({ error: "Scheduler not exist!" })
+    }
+    if (schedule.availableSeats == 0) {
+      return res.status(404).json({ error: "no seat ! please try later" })
+    }
+    const scheduleSeats = schedule.availableSeats - 1;
+    await ScheduleInfos.findByIdAndUpdate(req.params.id, { availableSeats: scheduleSeats }, { new: true });
+    const appNber = schedule.seats - scheduleSeats;
+    req.body.appoitmentNumber = appNber;
+
   
     const appointment= await appoitmentInfos.create(req.body)
   // console.log(appointment);
@@ -18,9 +32,9 @@ class appoitmentController {
     }
     const appointmentdata= await appoitmentInfos.findById(appointment._id);
     // console.log(appointmentdata) ;
-    sendSms(req.user.firstName,req.user.lastName,appointmentdata.schedule.service.serviceName,appointment.status,appointment._id,appointmentdata.user.phone_number)
-    // const scheduleSeats= Schedule.availableSeats-1
-    // await ScheduleInfos.findByIdAndUpdate(req.params.id, {availableSeats:scheduleSeats},{new:true})
+    sendSms(req.user.firstName,req.user.lastName,appointmentdata.schedule.service.serviceName,appointment.status,schedule.startDate,
+      schedule.endDate, appointment.appoitmentNumber, appointment._id,appointmentdata.user.phone_number)
+   
     return res.status(200).json({message:"appointment created successfully", data:appointment})
    }
    
