@@ -10,9 +10,9 @@ class validator{
     }
     static newAccountRules(){
         return[
-            check("email","email is invalid").trim().isEmail(), //trim function removes the space before/after the email
+            check("email","email is invalid").trim().isEmail(), 
             check("password","weak password").trim().isStrongPassword(),
-            check("lastname","lastname should be valid").trim().isAlpha(),
+            // check("lastname","lastname should be valid").trim().isAlpha(),
             check("firstName","firstName should be valid").trim().isAlpha(),
             check("Identification_card","ID number should be 16 numbers").trim().isNumeric(),
 

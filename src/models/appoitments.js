@@ -3,24 +3,24 @@ import mongoose from "mongoose";
 const appoitmentSchema= new mongoose.Schema({
 
     
-     user:{
-         type:mongoose.Schema.ObjectId,
-       ref:"user"
+    user:{
+      type:mongoose.Schema.ObjectId,
+    ref:"User"
      },
      schedule:{
         type:mongoose.Schema.ObjectId,
-        ref:"schedule"
+        ref:"Schedule"
       },
         services:{
           type:mongoose.Schema.ObjectId,
-          ref:"sevices"
+          ref:"Services"
         },
     status:{
         type:String,
         enum:["pending","accepted","declined","canceled"],
-        default:"pending"
+        default:"accepted"
     },
-
+  appoitmentNumber:Number,
 },{
     timestamp:true,
 });
@@ -35,6 +35,7 @@ const appoitmentSchema= new mongoose.Schema({
      })
      .populate({
        path:"services",
+       select:"serviceName servicesDescription"
      })
     next();
 });

@@ -55,6 +55,6 @@ class ScheduleController {
         // const updatedschedule= await ScheduleInfos.findById(req.params.id);
         return res.status(200).json({message:"schedule updated successfully",data:schedule});
     }
-  
+};
 
-export default ScheduleController;
+export default ScheduleController

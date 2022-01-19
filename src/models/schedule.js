@@ -14,6 +14,7 @@ const scheduleSchema= new mongoose.Schema(
         ref:"Services"
     },
     seats:Number,
+    availableSeats:Number,
     startDate:Date,
     endDate:Date,
 },

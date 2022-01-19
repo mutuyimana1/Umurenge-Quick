@@ -23,6 +23,5 @@ userRoute.patch("/:id", userController.updateOneUser);
 
 export default userRoute;
 
-    
-export default userRoute;
+
 
