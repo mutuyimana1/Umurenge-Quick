@@ -15,7 +15,7 @@ const scheduleSchema= new mongoose.Schema(
     },
     seats:Number,
     availableSeats:Number,
-    scheduleSeats:Number,
+    remainingSeats:Number,
     startDate:Date,
     endDate:Date,
 },

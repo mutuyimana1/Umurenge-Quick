@@ -45,7 +45,7 @@ class userController {
     }
     return res
       .status(200)
-      .json({ message: "User deleted successfully", data: user });
+      .json({ message: "User deleted successfully",});
   }
   //updating a user
   static async updateOneUser(req, res) {

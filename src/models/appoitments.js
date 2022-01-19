@@ -19,6 +19,7 @@ const appoitmentSchema= new mongoose.Schema({
         enum:["pending","accepted","declined","canceled"],
         default:"accepted"
     },
+    appoitmentNumber:Number,
 
 },{
     timestamp:true,
