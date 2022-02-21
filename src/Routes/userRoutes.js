@@ -5,7 +5,6 @@ import DataChecker from "../middlewares/dataChecker";
 import verifyToken from "../middlewares/verifyToken"
 import verifyAccess from "../middlewares/verifyAccess";
 
-
 const userRoute = express.Router();
 
 userRoute.post(
@@ -15,7 +14,7 @@ userRoute.post(
   DataChecker.isEmailExist,
   userController.createUser
 );
-userRoute.get("/all",verifyToken, verifyAccess("admin"), userController.getAllUsers);
+userRoute.get("/all", userController.getAllUsers);
 userRoute.get("/:id",verifyToken, verifyAccess("admin"), userController.getOneUser);
 userRoute.delete("/delete/:id",verifyToken, verifyAccess("admin"), userController.deleteOneUser);
 userRoute.post("/login", userController.login);
