@@ -7,7 +7,7 @@ scheduleRouter.post("/create", verifyToken, ScheduleController.createSchedule);
 scheduleRouter.post("/create/:id", verifyToken, 
 
 ScheduleController.createSchedule);
-scheduleRouter.get("/all", verifyToken, ScheduleController.getAllSchedule);
+scheduleRouter.get("/all", ScheduleController.getAllSchedule);
 scheduleRouter.get(
   "/getone/:id",
   ScheduleController.getOneSchedule
