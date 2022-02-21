@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 import servicesRoutes from "./src/Routes/servicesRoutes";
 
 import scheduleRouter from "./src/Routes/scheduleRouter";
@@ -13,6 +14,7 @@ import userRoute from "./src/Routes/userRoutes"
 
 dotenv.config("./.env")
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/services",servicesRoutes);
 
